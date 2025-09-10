@@ -11,7 +11,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] Proper use of Markdown
 - [x] A concise and compelling elevator pitch
 - [x] Description of key features
-- [ ] Description of how you will use each technology
+- [x] Description of how you will use each technology
 - [x] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
@@ -22,31 +22,22 @@ Have you ever played a round of golf with friends and missed the green by a mile
 
 ![Design image](CaddietudPlan.png)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-```mermaid
-sequenceDiagram
-    actor You
-    actor Website
-    You->>Website: Replace this with your design
-```
-
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Allows the user to prompt an ai to create an excuse about their current situation
+- Users can create their own excuse and upload it to the website
+- Users have the option to vote on who has the best excuse
 
 ### Technologies
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - I'm going to use HTML to design the structure of the web-page
+- **CSS** - Used to give the structure of the web-page a more modern function and feel
+- **React** - used for login screen into the app and managing what users user input and what users see when they vote
+- **Service** - Backend serves like loggin, logging votes, and managing all of the excuses uploaded by users
+- **DB/Login** - Stores user data like uploaded excuses and votes
+- **WebSocket** - Used to update the current vote resaults in real time
 
 ## 🚀 AWS deliverable
 
