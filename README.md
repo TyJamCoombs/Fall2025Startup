@@ -43,21 +43,21 @@ I am going to use the required technologies in the following ways.
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Server deployed and accessible with custom domain name** - [My server link](https://yourdomainnamehere.click).
+- [x] **Server deployed and accessible with custom domain name** - https://startup.tyler-coombs-portfolio.click
 
 ## 🚀 HTML deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - I added pages for each component of my application
+- [x] **Proper HTML element usage** - I used elements in my website
+- [x] **Links** - I used links to link to all web pages
+- [x] **Text** - has text
+- [x] **3rd party API placeholder** - currently not planed to use 3rd party
 - [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **Login placeholder** - there is a login page
+- [x] **DB data placeholder** - Has placeholders for server data
+- [x] **WebSocket placeholder** - there are placeholders
 
 ## 🚀 CSS deliverable
 
