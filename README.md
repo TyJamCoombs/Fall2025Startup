@@ -2,7 +2,7 @@
 
 [My Notes](notes.md)
 
-Caddietud will be a web application that uses ai to generate excuses depending on prompts like "help my ball went into the water". Another feature is to allow users to generate their own excuses and vote on who has the best excuse.
+Caddietud will be a web application that uses users to get excuses that depending on tags like "help my ball went into the water". Another feature is to allow users to generate their own excuses and vote on who has the best excuse.
 
 ## 🚀 Specification Deliverable
 
