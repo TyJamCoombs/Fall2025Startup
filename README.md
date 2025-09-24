@@ -54,7 +54,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Links** - I used links to link to all web pages
 - [x] **Text** - has text
 - [x] **3rd party API placeholder** - currently not planed to use 3rd party
-- [ ] **Images** - I did not complete this part of the deliverable.
+- [x] **Images** - I added a golfball picture
 - [x] **Login placeholder** - there is a login page
 - [x] **DB data placeholder** - Has placeholders for server data
 - [x] **WebSocket placeholder** - there are placeholders
