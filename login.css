@@ -83,6 +83,32 @@ body {
     width:300px;
     height:150px;
 }
+.inputBoxes{
+    margin-bottom:1rem;
+}
+.inputBoxes input{
+    border: none;
+    background-color: #006400;
+    color:white;
+    
+}
+.inputBoxes input::placeholder{
+    color:white;
+}
+
+.buttonConfig{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:1rem;
+}
+.loginSec Button{
+    padding: 0.5rem 1rem;
+    background-color: #006400;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
 
 footer {
     margin-top: 2rem;
