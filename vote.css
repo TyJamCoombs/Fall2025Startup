@@ -1,0 +1,166 @@
+body {
+    margin: 0;
+    font-family: Helvetica;
+    background:linear-gradient(135deg, #006168, #003311);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    background-color: #006400;
+    padding: 1rem;
+    margin: 0;
+}
+
+.headerButton {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    gap:20px;
+    color:white;
+}
+
+.headerButton h1 {
+    margin-left:25px;
+}
+
+.headerButton button {
+    padding: 0.5rem 1rem;
+    background-color: white;
+    color: black;
+    border: none;
+    cursor: pointer;
+}
+
+.headerButton button:hover {
+    background-color: #e0e0e0;
+}
+
+.menuConfig {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+    background-color: rgb(0, 115, 29);
+}
+
+.menuConfig li {  
+    padding: 0.5rem 1rem;
+}
+
+.menuConfig a {
+    color: white;
+    text-decoration: none;
+}
+
+.menuConfig a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    margin-top: 2rem;
+    background-color: rgb(0, 128, 151);
+    padding: 1rem;
+    text-align: center;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+.placeHldr{
+    min-height: 25vh;
+}
+.sectionTitle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:white;
+}
+
+.excusesCreateConfig{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.excuseCreate input::placeholder{
+    color:white;
+}
+
+.excuseCreate input{
+    color:black;
+    background-color: #006400;
+    border: none;
+    height: 2rem;
+}
+
+.excuseCreate Button{
+    padding: 0.5rem 1rem;
+    height: 2rem;
+    background-color: rgb(0, 128, 151);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+
+.excusesConfig{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rankedExcuses{
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    color: balck;
+    min-height: 30rem;
+    width:100%;
+}
+
+.rankedExcuses li{
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    background-color: rgb(0, 115, 29);
+    width:100%;
+}
+@media (max-width: 768px) {
+  .headerButton {
+    flex-direction: row;
+    align-items: flex-start;
+    gap:10px;
+  }
+
+  .menuConfig {
+    flex-direction: row;
+    gap: 10px;
+  }
+  .loginSec{
+    padding: 1rem;
+    max-height: auto;
+  }
+  .rankedExcuses{
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    color: balck;
+    width:100%;
+}
+}

@@ -1,27 +1,49 @@
-<body>
-    <div class ="Header">
+<html>
+    <header>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="vote.css">
+    </header>
+    <body>
+        <div class="Header">
+      <div class="headerButton">
         <h1>Caddietud</h1>
-        
-        <menu>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="vote.html">Vote</a></li>
-          <li><a href="getExcuse.html">Excuse Generator</a></li>
-        </menu>
+        <form action="login.html">
+          <button type="submit">Login</button>
+        </form>
+      </div>
+  
+      <ul class="menuConfig">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="vote.html">Vote</a></li>
+        <li><a href="getExcuse.html">Excuse Generator</a></li>
+      </ul>
     </div>
-    <div class = "excuseCreate">
-        <input type="text" placeholder="Enter Excuse here" />
-        <button type="submit">submit</button>
+    <div class ="sectionTitle">
+        <h2>Create Excuse</h2>
     </div>
-    <div class = "rankedExcuses">
-        <menu>
-            <li>placeholder: for websocket</li>
-            <li>One</li>
-            <li>Two</li>
-            <li>Three</li>
-            <li>Four</li>
-        </menu>
+    <div class =excusesCreateConfig>
+        <div class = "excuseCreate">
+            <input type="text" placeholder="Enter Excuse here" />
+            <button type="submit">submit</button>
+        </div>
+    </div>
+    <div class ="sectionTitle">
+        <h2>Top Excuses</h2>
+    </div>
+    <div class ="excusesConfig">
+        <div class = "rankedExcuses">
+            <ul>
+                <li>placeholder: for websocket</li>
+                <li>One</li>
+                <li>Two</li>
+                <li>Three</li>
+                <li>Four</li>
+            </ul>
+        </div>
     </div>
     <footer>
         <a href="https://github.com/TyJamCoombs/Fall2025Startup">github</a>
     </footer>
-</body>
+    </body>
+</html>

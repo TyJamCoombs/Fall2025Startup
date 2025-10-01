@@ -1,30 +1,43 @@
-<body>
-    <div class ="Header">
-        <h1>Caddietud <form action="login.html"><button type="submit">Login</button></form></h1>
-        
-        <menu>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="vote.html">Vote</a></li>
-          <li><a href="getExcuse.html">Excuse Generator</a></li>
-        </menu>
+<html>
+  <header>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="getExcuse.css">
+    <title>Caddietud</title>
+  </header>
+  <body>
+      <div class="Header">
+    <div class="headerButton">
+      <h1>Caddietud</h1>
+      <form action="login.html">
+        <button type="submit">Login</button>
+      </form>
     </div>
-    <div>
+
+    <ul class="menuConfig">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="vote.html">Vote</a></li>
+      <li><a href="getExcuse.html">Excuse Generator</a></li>
+    </ul>
+  </div>
+  <div class ="excudeConfig">
+    <div class ="selectExcuse">
       <h1>Select type of excude:</h1>
-      <menu>
-        <li>placeholder: uses web socket to send a message to the server</li>
-        <li><button type="submit">Sand trap</button></li>
-        <li><button type="submit">Choked it</button></li>
-        <li><button type="submit">Water Trap</button></li>
-        <li><button type="submit">Hit a house</button></li>
-      </menu>
-      
+      <button type="submit">Sand trap</button>
+      <button type="submit">Choked it</button>
+      <button type="submit">Water Trap</button>
+      <button type="submit">Hit a house</button>        
     </div>
+  </div>
+  <div class ="excudeBConfig">
     <div class ="ExcuseBox">
       <h1>Excuse</h1>
       <p>placeholder: put data from server/data base here</p>
+    </div>
   </div>
-
-  <footer>
-    <a href="https://github.com/TyJamCoombs/Fall2025Startup">github</a>
-  </footer>
-</body>
+  
+    <footer>
+      <a href="https://github.com/TyJamCoombs/Fall2025Startup">github</a>
+    </footer>
+  </body>
+</html>
