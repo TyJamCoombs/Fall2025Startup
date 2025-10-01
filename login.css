@@ -16,6 +16,7 @@ body {
     color: white;
     background-color: #006400;
     padding: 1rem;
+    margin: 0;
 }
 
 .headerButton {
@@ -28,7 +29,7 @@ body {
 }
 
 .headerButton h1 {
-    margin: 0;
+    margin-left:25px;
 }
 
 .headerButton button {

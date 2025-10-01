@@ -16,6 +16,7 @@ body {
     color: white;
     background-color: #006400;
     padding: 1rem;
+    margin: 0;
 }
 
 .headerButton {
@@ -28,7 +29,7 @@ body {
 }
 
 .headerButton h1 {
-    margin: 0;
+    margin-left:25px;
 }
 
 .headerButton button {
@@ -71,7 +72,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.6);
     background-blend-mode: multiply;
     color: white;
     min-height: 80vh;
