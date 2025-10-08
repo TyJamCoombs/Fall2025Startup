@@ -88,26 +88,14 @@ body {
 .excudeBConfig{
     display:flex;
     align-items: center;
-    background-color: white;
     padding: 1rem;
+    background-color: rgb(0, 115, 29);
+    width:100%;
 }
 .ExcuseBox{
     min-height: 20rem;
-}
-footer {
-    margin-top: 2rem;
-    background-color: rgb(0, 128, 151);
-    padding: 1rem;
-    text-align: center;
-}
-
-footer a {
-  color: white;
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
+    width:100%;
+    text-align: left;
 }
 
 @media (max-width: 768px) {

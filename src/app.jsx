@@ -6,6 +6,7 @@ import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from './login/login';
 import { Home } from './home/home';
 import { Vote } from './vote/vote';
+import {Excuse} from './getExcuse/getExcuse';
 
 function NotFound() {
   return <main className="container-fluid bg-secondary text-center">404: Return to sender. Address unknown.</main>;
@@ -26,12 +27,18 @@ export default function App() {
                 Home
               </NavLink>
             </li>
-            <li>
+            <li className="nav-item">
               <NavLink className="nav-link" to="vote">
                 Vote
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="getExcuse">
+                Excuse
+              </NavLink>
+            </li>
           </menu>
+
           <div className="headerButton">
             <NavLink className="nav-link" to="login">
                 <button type="submit">Login</button>
@@ -45,6 +52,7 @@ export default function App() {
         <Route path='/' element={<Home />} exact />
         <Route path = '/login' element={<Login />}/>
         <Route path = '/vote' element={<Vote />}/>
+        <Route path = '/getExcuse' element={<Excuse />}/>
         <Route path='*' element={<NotFound />} />
         </Routes>
 
