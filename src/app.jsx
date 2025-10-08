@@ -5,6 +5,7 @@ import './app.css';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from './login/login';
 import { Home } from './home/home';
+import { Vote } from './vote/vote';
 
 function NotFound() {
   return <main className="container-fluid bg-secondary text-center">404: Return to sender. Address unknown.</main>;
@@ -25,6 +26,11 @@ export default function App() {
                 Home
               </NavLink>
             </li>
+            <li>
+              <NavLink className="nav-link" to="vote">
+                Vote
+              </NavLink>
+            </li>
           </menu>
           <div className="headerButton">
             <NavLink className="nav-link" to="login">
@@ -38,6 +44,7 @@ export default function App() {
         <Routes>
         <Route path='/' element={<Home />} exact />
         <Route path = '/login' element={<Login />}/>
+        <Route path = '/vote' element={<Vote />}/>
         <Route path='*' element={<NotFound />} />
         </Routes>
 
