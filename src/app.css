@@ -1,0 +1,84 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  min-width: 375px;
+}
+
+header {
+  flex: 0 80px;
+}
+
+main {
+  display: flex;
+  flex: 1 calc(100vh - 110px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background:linear-gradient(135deg, #006168, #003311);
+}
+
+footer {
+    margin-top: 2rem;
+    background-color: rgb(0, 128, 151);
+    padding: 1rem;
+    text-align: center;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+menu {
+  flex: 1;
+  display: flex;
+  flex-direction: row !important;
+  list-style: none;
+}
+
+.navbar-brand {
+  padding-left: 0.3em;
+  border-bottom: solid rgb(182, 182, 182) thin;
+}
+
+menu .nav-item {
+  padding: 0 0.3em;
+}
+
+.tip {
+    margin-top: 2rem;
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/e/e6/Golfball.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    background-blend-mode: multiply;
+    color: white;
+    min-height: 80vh;
+}
+
+.tip h1 {
+    margin-top: 0;
+}
+
+@media (max-width: 768px) {
+  .headerButton {
+    flex-direction: row;
+    align-items: flex-start;
+    gap:10px;
+  }
+
+  .menuConfig {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .tip {
+    padding: 1rem;
+    max-height: auto;
+  }
+}
