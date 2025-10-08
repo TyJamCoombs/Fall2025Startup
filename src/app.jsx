@@ -19,9 +19,6 @@ export default function App() {
           <div className="navbar-brand">
             Caddietud<sup>&reg;</sup>
           </div>
-          <form action="login.html">
-            <button type="submit">Login</button>
-          </form>
           <menu className="navbar-nav">
             <li className="nav-item">
               <NavLink className="nav-link" to="">
@@ -29,12 +26,18 @@ export default function App() {
               </NavLink>
             </li>
           </menu>
+          <div className="headerButton">
+            <NavLink className="nav-link" to="login">
+                <button type="submit">Login</button>
+            </NavLink>
+          </div>
         </nav>
       </header>
 
       <main>
         <Routes>
         <Route path='/' element={<Home />} exact />
+        <Route path = '/login' element={<Login />}/>
         <Route path='*' element={<NotFound />} />
         </Routes>
 
