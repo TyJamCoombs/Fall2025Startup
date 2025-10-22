@@ -7,7 +7,7 @@ export function Excuse() {
     <main className="container-fluid bg-secondary text-center">
       <div className ="excudeConfig">
         <div className ="selectExcuse">
-        <h1>Select type of excude:</h1>
+        <h1>Select type of excuse:</h1>
         <button type="submit">Sand trap</button>
         <button type="submit">Choked it</button>
         <button type="submit">Water Trap</button>
