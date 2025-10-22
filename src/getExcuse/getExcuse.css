@@ -78,12 +78,16 @@ body {
     color: white;
 }
 
-.selectExcuse button{
+.selectExcuse button {
+    padding: 0.5rem 1rem;
     background-color: white;
-    padding: 1rem;
     color: black;
     border: none;
     cursor: pointer;
+}
+
+.selectExcuse button:hover {
+    background-color: #e0e0e0;
 }
 .excudeBConfig{
     display:flex;
