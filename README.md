@@ -74,9 +74,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Bundled using Vite** - I did not complete this part of the deliverable.
-- [ ] **Components** - I did not complete this part of the deliverable.
-- [ ] **Router** - I did not complete this part of the deliverable.
+- [X] **Bundled using Vite** - Vite is very useful when you want to test your site
+- [X] **Components** - Very cool to compartmentalize the webpage also I know that it's faster now
+- [X] **Router** - The process in order to insert a new part of the page
 
 ## 🚀 React part 2: Reactivity deliverable
 
