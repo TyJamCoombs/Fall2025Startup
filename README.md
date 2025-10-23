@@ -82,8 +82,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [X] **All functionality implemented or mocked out** - I used javascript to emulate adding an excuse to a ranked list. Also for getting an excuse off the server when you press a button
+- [X] **Hooks** - I use hooks to set callbacks to update the leaderboard
 
 ## 🚀 Service deliverable
 
