@@ -1,16 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './vote.css';
 
 export function Vote() {
   const [excuse, setExcuse] = useState('');
   const [leaderboard, setLeaderboard] = useState([]);
 
+  // Fetch excuses from backend on component mount
+  useEffect(() => {
+    fetch('/api/excuses', {
+      method: 'GET',
+      credentials: 'include', // ensures cookies are sent for auth
+    })
+      .then((res) => res.json())
+      .then((data) => setLeaderboard(data))
+      .catch((err) => console.error('Error fetching excuses:', err));
+  }, []);
+
   const handleChange = (e) => setExcuse(e.target.value);
 
   const handleSubmit = () => {
     if (excuse.trim() !== '') {
-      setLeaderboard((prev) => [...prev,{ text: excuse.trim(), user: 'PlaceHolder for user' }]);
-      setExcuse('');
+      fetch('/api/excuse', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({ text: excuse.trim() }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setLeaderboard(data);
+          setExcuse('');
+        })
+        .catch((err) => console.error('Error submitting excuse:', err));
     }
   };
 
@@ -42,16 +65,18 @@ export function Vote() {
       <div className="excusesConfig">
         <div className="rankedExcuses">
           <ul className="list-group">
-            {leaderboard.length === 0 ? (
-              <li>
-                Placeholder for getting excuses from the server
-              </li>
+            {Array.isArray(leaderboard) ? (
+              leaderboard.length === 0 ? (
+                <li>No excuses yet</li>
+              ) : (
+                leaderboard.map((item, index) => (
+                  <li key={index} className="list-group-item">
+                    {index + 1}. "{item.text}" - {item.user}
+                  </li>
+                ))
+              )
             ) : (
-              leaderboard.map((item, index) => (
-                <li key={index} className="list-group-item">
-                  {index + 1}. "{item.text}" -{item.user}
-                </li>
-              ))
+              <li>Please sign in to view and vote</li>
             )}
           </ul>
         </div>

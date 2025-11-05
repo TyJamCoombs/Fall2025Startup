@@ -53,6 +53,7 @@ apiRouter.delete('/auth/logout', async (req, res) => {
 const verifyAuth = async (req, res, next) => {
   const user = await findUser('token', req.cookies[authCookieName]);
   if (user) {
+    req.user = user;
     next();
   } else {
     res.status(401).send({ msg: 'Unauthorized' });
@@ -64,41 +65,35 @@ apiRouter.get('/excuses',verifyAuth,(_req,res)=>{
   res.send(excuses);
 })
 //Submit Excuse
-apiRouter.post('/score', verifyAuth, (req, res) => {
-  excuses = updateExcuses(req.body);
-  res.send(excuses);
+apiRouter.post('/excuse', verifyAuth, (req, res) => {
+  try {
+    console.log('Incoming excuse:', req.body); // log the payload
+
+    if (!req.body || !req.body.text) {
+      return res.status(400).json({ error: 'Missing excuse text' });
+    }
+
+    excuses = updateExcuses(req.body, req.user.email); // pass user email
+    res.json(excuses);
+  } catch (err) {
+    console.error('Error in /excuse:', err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
-function updateExcuses(newExcuse) { //eventually update to allow ranking
-  let found = false;
-  for (const [i, prevScore] of scores.entries()) {
-    if (newScore.score > prevScore.score) {
-      excuses.splice(i, 0, newScore);
-      found = true;
-      break;
-    }
-  }
+function updateExcuses(newExcuse, userEmail) {
+  const excuse = {
+    text: newExcuse.text,
+    user: userEmail || 'Anonymous',
+  };
 
-  if (!found) {
-    excuses.push(newScore);
-  }
-
+  excuses.unshift(excuse);
   if (excuses.length > 10) {
     excuses.length = 10;
   }
 
   return excuses;
 }
-// GetScores
-// apiRouter.get('/scores', verifyAuth, (_req, res) => {
-//   res.send(scores);
-// });
-
-// SubmitScore
-// apiRouter.post('/score', verifyAuth, (req, res) => {
-//   scores = updateScores(req.body);
-//   res.send(scores);
-// });
 
 // Default error handler
 app.use(function (err, req, res, next) {
