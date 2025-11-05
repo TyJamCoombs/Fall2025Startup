@@ -17,21 +17,31 @@ export function Unauthenticated(props) {
   }
 
   async function loginOrCreate(endpoint) {
+  try {
     const response = await fetch(endpoint, {
-      method: 'post',
+      method: 'POST',
       body: JSON.stringify({ email: userName, password: password }),
       headers: {
-        'Content-type': 'application/json; charset=UTF-8',
+        'Content-Type': 'application/json; charset=UTF-8',
       },
     });
-    if (response?.status === 200) {
+
+    if (response.ok) {
       localStorage.setItem('userName', userName);
       props.onLogin(userName);
     } else {
-      const body = await response.json();
-      setDisplayError(`⚠ Error: ${body.msg}`);
+      let errorMsg = `⚠ Error: ${response.status}`;
+      try {
+        const body = await response.json();
+        if (body?.msg) errorMsg = `⚠ Error: ${body.msg}`;
+      } catch (jsonErr) {
+      }
+      setDisplayError(errorMsg);
     }
+  } catch (err) {
+    setDisplayError(`⚠ Network error: ${err.message}`);
   }
+}
 
   return (
     <>
