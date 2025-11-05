@@ -7,12 +7,17 @@ import { Login } from './login/login';
 import { Home } from './home/home';
 import { Vote } from './vote/vote';
 import {Excuse} from './getExcuse/getExcuse';
+import { AuthState } from './login/authState';
 
 function NotFound() {
   return <main className="container-fluid bg-secondary text-center">404: Return to sender. Address unknown.</main>;
 }
 
-export default function App() {
+export function App() {
+  const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
+  const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
+  const [authState, setAuthState] = React.useState(currentAuthState);
+
   return (
     <BrowserRouter>
       <div className="body text-light">
@@ -50,7 +55,11 @@ export default function App() {
       <main>
         <Routes>
         <Route path='/' element={<Home />} exact />
-        <Route path = '/login' element={<Login />}/>
+        <Route path = '/login' element={<Login userName={userName} authState={authState} onAuthChange={(userName, authState) => {
+                  setAuthState(authState);
+                  setUserName(userName);
+                }}
+              />}/>
         <Route path = '/vote' element={<Vote />}/>
         <Route path = '/getExcuse' element={<Excuse />}/>
         <Route path='*' element={<NotFound />} />
@@ -67,3 +76,5 @@ export default function App() {
     </BrowserRouter>
   );
 }
+
+export default App;
