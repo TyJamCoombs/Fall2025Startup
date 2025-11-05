@@ -89,12 +89,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
+- [X] **Node.js/Express HTTP service** - Node and express make the whole backend service stuff possible
+- [X] **Static middleware for frontend** - On the home page I used this to add the api
+- [X] **Calls to third party endpoints** - I found an api that gives random life advice
+- [X] **Backend service endpoints** - In the backend the data is now being stored like user info and a list of uploaded excuses
+- [X] **Frontend calls service endpoints** - I used this in the voting system to upload and update the leaderboard
+- [X] **Supports registration, login, logout, and restricted endpoint** - Now some parts of my site are behind a login screen
 
 
 ## 🚀 DB deliverable
