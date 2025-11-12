@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const express = require('express');
 const uuid = require('uuid');
 const app = express();
+const DB = require('./database.js');
 
 const authCookieName = 'token';
 
@@ -33,6 +34,7 @@ apiRouter.post('/auth/login', async (req, res) => {
   if (user) {
     if (await bcrypt.compare(req.body.password, user.password)) {
       user.token = uuid.v4();
+      await DB.updateUser(user);
       setAuthCookie(res, user.token);
       res.send({ email: user.email });
       return;
@@ -45,6 +47,7 @@ apiRouter.delete('/auth/logout', async (req, res) => {
   const user = await findUser('token', req.cookies[authCookieName]);
   if (user) {
     delete user.token;
+    DB.updateUser(user);
   }
   res.clearCookie(authCookieName);
   res.status(204).end();
@@ -60,11 +63,11 @@ const verifyAuth = async (req, res, next) => {
   }
 };
 
-//Get Excuses
+
 apiRouter.get('/excuses',verifyAuth,(_req,res)=>{
   res.send(excuses);
 })
-//Submit Excuse
+
 apiRouter.post('/excuse', verifyAuth, (req, res) => {
   try {
     console.log('Incoming excuse:', req.body); // log the payload
@@ -82,17 +85,8 @@ apiRouter.post('/excuse', verifyAuth, (req, res) => {
 });
 
 function updateExcuses(newExcuse, userEmail) {
-  const excuse = {
-    text: newExcuse.text,
-    user: userEmail || 'Anonymous',
-  };
-
-  excuses.unshift(excuse);
-  if (excuses.length > 10) {
-    excuses.length = 10;
-  }
-
-  return excuses;
+  DB.addExcuse(newExcuse,userEmail);
+  return DB.GetExcuses();
 }
 
 // Default error handler
