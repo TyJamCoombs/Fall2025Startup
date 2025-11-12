@@ -63,9 +63,15 @@ const verifyAuth = async (req, res, next) => {
 };
 
 
-apiRouter.get('/excuses',verifyAuth,(_req,res)=>{
-  res.send(excuses);
-})
+apiRouter.get('/excuses', verifyAuth, async (_req, res) => {
+  try {
+    const excuses = await DB.getExcuses();
+    res.send(excuses);
+  } catch (err) {
+    console.error('Error in GET /excuses:', err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 apiRouter.post('/excuse', verifyAuth, (req, res) => {
   try {
