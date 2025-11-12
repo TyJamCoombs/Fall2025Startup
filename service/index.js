@@ -16,7 +16,6 @@ const apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
 apiRouter.post('/auth/create', async (req, res) => {
-  console.log("create user");
   if (await findUser('email', req.body.email)) {
     res.status(409).send({ msg: 'Existing user' });
   } else {
@@ -54,7 +53,7 @@ apiRouter.delete('/auth/logout', async (req, res) => {
 });
 
 const verifyAuth = async (req, res, next) => {
-  const user = await findUser('token', req.cookies[authCookieName]);
+  const user = await findUserToken('token', req.cookies[authCookieName]);
   if (user) {
     req.user = user;
     next();
@@ -116,6 +115,12 @@ async function findUser(field, value) {
   if (!value) return null;
 
   return DB.getUser(value)
+}
+
+async function findUserToken(field, value) {
+  if (!value) return null;
+
+  return DB.getUserByToken(value)
 }
 
 // setAuthCookie in the HTTP response
