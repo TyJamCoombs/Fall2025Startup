@@ -38,7 +38,7 @@ async function addExcuse(newExcuse, userEmail) {
   const excuse = {
     text: newExcuse.text,
     user: userEmail || 'Anonymous',
-    createdAt: new Date(),
+    createdAt: new Date(),c
   };
 
   return excusesCollection.insertOne(excuse);
