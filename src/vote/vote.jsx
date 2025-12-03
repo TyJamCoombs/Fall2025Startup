@@ -18,7 +18,7 @@ export function Vote() {
       })
       .catch((err) => console.error('Error fetching excuses:', err));
 
-    const socket = new WebSocket('ws://localhost:3000');
+    const socket = new WebSocket('ws://localhost:4000');
 
     socket.onopen = () => {
       console.log('Connected to WebSocket');
