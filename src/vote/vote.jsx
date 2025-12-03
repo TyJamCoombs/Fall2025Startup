@@ -3,7 +3,7 @@ import './vote.css';
 
 export function Vote() {
   const [excuse, setExcuse] = useState('');
-  const [leaderboard, setLeaderboard] = useState([]);
+  const [leaderboard, setLeaderboard] = useState({});
 
   // Fetch excuses from backend on component mount
   useEffect(() => {
@@ -19,23 +19,35 @@ export function Vote() {
   const handleChange = (e) => setExcuse(e.target.value);
 
   const handleSubmit = () => {
-    if (excuse.trim() !== '') {
-      fetch('/api/excuse', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify({ text: excuse.trim() }),
+  if (excuse.trim() !== '') {
+    fetch('/api/excuse', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+      body: JSON.stringify({ text: excuse.trim() }),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          console.warn('Non-OK response:', res.status);
+          return null;
+        }
+        return res.json();
       })
-        .then((res) => res.json())
-        .then((data) => {
+      .then((data) => {
+        if (Array.isArray(data)) {
           setLeaderboard(data);
           setExcuse('');
-        })
-        .catch((err) => console.error('Error submitting excuse:', err));
-    }
-  };
+        } else {
+          console.warn('Unexpected response format:', data);
+        }
+      })
+      .catch((err) => {
+        console.error('Error submitting excuse:', err);
+      });
+  }
+};
 
   return (
     <main className="container-fluid bg-secondary text-center">

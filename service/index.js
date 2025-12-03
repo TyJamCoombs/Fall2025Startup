@@ -91,7 +91,6 @@ apiRouter.post('/excuse', verifyAuth, (req, res) => {
 
 function updateExcuses(newExcuse, userEmail) {
   DB.addExcuse(newExcuse,userEmail);
-  return DB.getExcuses();
 }
 
 // Default error handler
@@ -131,13 +130,15 @@ async function findUserToken(field, value) {
 
 // setAuthCookie in the HTTP response
 function setAuthCookie(res, authToken) {
+  const isProd = process.env.NODE_ENV === 'production';
   res.cookie(authCookieName, authToken, {
     maxAge: 1000 * 60 * 60 * 24 * 365,
-    secure: true,
+    secure: isProd, // only secure in production
     httpOnly: true,
     sameSite: 'strict',
   });
 }
+
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);

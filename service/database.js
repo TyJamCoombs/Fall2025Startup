@@ -49,7 +49,6 @@ async function getExcuses() {
   const query = {};
   const options = {
     sort: { createdAt: -1 },
-    limit: 10,
   };
 
   const cursor = excusesCollection.find(query, options);
