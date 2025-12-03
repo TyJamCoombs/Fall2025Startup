@@ -56,8 +56,6 @@ export function Vote() {
           }
         })
         .catch((err) => console.error('Error submitting excuse:', err));
-
-      // clear immediately
       setExcuse('');
     }
   };

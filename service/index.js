@@ -74,15 +74,18 @@ apiRouter.get('/excuses', verifyAuth, async (_req, res) => {
   }
 });
 
-apiRouter.post('/excuse', verifyAuth, (req, res) => {
-  try {
-    console.log('Incoming excuse:', req.body); // log the payload
+async function updateExcuses(newExcuse, userEmail) {
+  await DB.addExcuse(newExcuse, userEmail);
+  return DB.getExcuses();
+}
 
+apiRouter.post('/excuse', verifyAuth, async (req, res) => {
+  try {
     if (!req.body || !req.body.text) {
       return res.status(400).json({ error: 'Missing excuse text' });
     }
 
-    excuses = updateExcuses(req.body, req.user.email); // pass user email
+    const excuses = await updateExcuses(req.body, req.user.email);
     res.json(excuses);
   } catch (err) {
     console.error('Error in /excuse:', err);
@@ -90,9 +93,6 @@ apiRouter.post('/excuse', verifyAuth, (req, res) => {
   }
 });
 
-function updateExcuses(newExcuse, userEmail) {
-  DB.addExcuse(newExcuse,userEmail);
-}
 
 // Default error handler
 app.use(function (err, req, res, next) {
@@ -101,7 +101,7 @@ app.use(function (err, req, res, next) {
 
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {
-  res.sendFile('index.html', { root: 'public' });
+  res.sendFile('index.html', { root: 'Fall2025Startup' });
 });
 
 async function createUser(email, password) {

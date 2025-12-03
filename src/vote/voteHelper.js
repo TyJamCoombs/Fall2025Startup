@@ -1,4 +1,3 @@
-// Keep a separate array for the data
 let leaderboard = ["Enter excuse to view excuses"];
 
 const input = document.getElementById("entryInput");
@@ -13,13 +12,11 @@ socket.onopen = () => {
 socket.onmessage = (event) => {
   try {
     const data = JSON.parse(event.data);
+    console.log("WS message received:", data);
 
     if (Array.isArray(data.leaderboard)) {
-      // Update the array, not the DOM element
-      leaderboard = data.leaderboard.map(e => e.text ?? e);
-      renderLeaderboard();
-    } else if (data.entry) {
-      leaderboard.push(data.entry);
+
+      leaderboard = data.leaderboard.map(e => `${e.text} - ${e.user ?? ''}`);
       renderLeaderboard();
     }
   } catch (err) {
@@ -39,7 +36,7 @@ function renderLeaderboard() {
 button.addEventListener("click", () => {
   const value = input.value.trim();
   if (value) {
-    socket.send(JSON.stringify({ entry: value }));
+    socket.send(JSON.stringify({ text: value }));
     input.value = "";
   }
 });
