@@ -1,28 +1,29 @@
-let excusesRanked = ["Enter excuse to view excuses"];
+// Keep a separate array for the data
+let leaderboard = ["Enter excuse to view excuses"];
 
 const input = document.getElementById("entryInput");
 const button = document.getElementById("submitBtn");
 const leaderboardList = document.getElementById("leaderboard");
 
 const socket = new WebSocket("ws://localhost:3000");
-socket.onopen=()=>{
+socket.onopen = () => {
   console.log("Connected to WebSocket from front end");
 };
 
-socket.onmessage=(event)=>{
-  try{
+socket.onmessage = (event) => {
+  try {
     const data = JSON.parse(event.data);
-    if(Array.isArray(data.leaderboard)){
-      leaderboardList = data.leaderboard;
+
+    if (Array.isArray(data.leaderboard)) {
+      // Update the array, not the DOM element
+      leaderboard = data.leaderboard.map(e => e.text ?? e);
       renderLeaderboard();
-    }
-    else if(data.entry){
+    } else if (data.entry) {
       leaderboard.push(data.entry);
       renderLeaderboard();
     }
-  }
-  catch(err){
-      console.log("Bad Message:",event.data);
+  } catch (err) {
+    console.log("Bad Message:", event.data);
   }
 };
 
@@ -38,7 +39,7 @@ function renderLeaderboard() {
 button.addEventListener("click", () => {
   const value = input.value.trim();
   if (value) {
-    socket.send(JSON.stringify({entry:value}));
+    socket.send(JSON.stringify({ entry: value }));
     input.value = "";
   }
 });

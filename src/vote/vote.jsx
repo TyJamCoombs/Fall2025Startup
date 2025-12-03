@@ -3,51 +3,64 @@ import './vote.css';
 
 export function Vote() {
   const [excuse, setExcuse] = useState('');
-  const [leaderboard, setLeaderboard] = useState({});
+  const [leaderboard, setLeaderboard] = useState([]);
 
-  // Fetch excuses from backend on component mount
   useEffect(() => {
     fetch('/api/excuses', {
       method: 'GET',
-      credentials: 'include', // ensures cookies are sent for auth
+      credentials: 'include',
     })
       .then((res) => res.json())
-      .then((data) => setLeaderboard(data))
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setLeaderboard(data);
+        }
+      })
       .catch((err) => console.error('Error fetching excuses:', err));
+
+    const socket = new WebSocket('ws://localhost:3000');
+
+    socket.onopen = () => {
+      console.log('Connected to WebSocket');
+    };
+
+    socket.onmessage = (event) => {
+      console.log('WS message:', event.data);
+      try {
+        const data = JSON.parse(event.data);
+        if (Array.isArray(data.leaderboard)) {
+          setLeaderboard(data.leaderboard);
+        }
+      } catch (err) {
+        console.error('Bad WS message:', event.data);
+      }
+    };
+
+    return () => socket.close();
   }, []);
 
   const handleChange = (e) => setExcuse(e.target.value);
 
   const handleSubmit = () => {
-  if (excuse.trim() !== '') {
-    fetch('/api/excuse', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-      body: JSON.stringify({ text: excuse.trim() }),
-    })
-      .then((res) => {
-        if (!res.ok) {
-          console.warn('Non-OK response:', res.status);
-          return null;
-        }
-        return res.json();
+    if (excuse.trim() !== '') {
+      fetch('/api/excuse', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ text: excuse.trim() }),
       })
-      .then((data) => {
-        if (Array.isArray(data)) {
-          setLeaderboard(data);
-          setExcuse('');
-        } else {
-          console.warn('Unexpected response format:', data);
-        }
-      })
-      .catch((err) => {
-        console.error('Error submitting excuse:', err);
-      });
-  }
-};
+        .then((res) => res.json())
+        .then((data) => {
+          if (Array.isArray(data)) {
+            setLeaderboard(data);
+          }
+        })
+        .catch((err) => console.error('Error submitting excuse:', err));
+
+      // clear immediately
+      setExcuse('');
+    }
+  };
 
   return (
     <main className="container-fluid bg-secondary text-center">
@@ -77,18 +90,14 @@ export function Vote() {
       <div className="excusesConfig">
         <div className="rankedExcuses">
           <ul className="list-group">
-            {Array.isArray(leaderboard) ? (
-              leaderboard.length === 0 ? (
-                <li>No excuses yet</li>
-              ) : (
-                leaderboard.map((item, index) => (
-                  <li key={index} className="list-group-item">
-                    {index + 1}. "{item.text}" - {item.user}
-                  </li>
-                ))
-              )
+            {leaderboard.length === 0 ? (
+              <li>No excuses yet</li>
             ) : (
-              <li>Please sign in to view and vote</li>
+              leaderboard.map((item, index) => (
+                <li key={index} className="list-group-item">
+                  {index + 1}. "{item.text}" - {item.user}
+                </li>
+              ))
             )}
           </ul>
         </div>

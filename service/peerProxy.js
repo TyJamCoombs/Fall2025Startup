@@ -8,12 +8,23 @@ function peerProxy(httpServer) {
     socket.isAlive = true;
 
     // Forward messages to everyone except the sender
-    socket.on('message', function message(data) {
+    socket.on('message', async (data) => {
+  try {
+    const parsed = JSON.parse(data);
+
+    if (parsed.text) {
+      await DB.addExcuse(parsed, parsed.userEmail);
+      const excuses = await DB.getExcuses();
+
       socketServer.clients.forEach((client) => {
-        if (client !== socket && client.readyState === WebSocket.OPEN) {
-          client.send(data);
+            if (client.readyState === WebSocket.OPEN) {
+              client.send(JSON.stringify({ leaderboard: excuses }));
+            }
+          });
         }
-      });
+      } catch (err) {
+        console.error("Bad message:", data, err);
+      }
     });
 
     // Respond to pong messages by marking the connection alive
