@@ -4,7 +4,7 @@ const input = document.getElementById("entryInput");
 const button = document.getElementById("submitBtn");
 const leaderboardList = document.getElementById("leaderboard");
 
-const socket = new WebSocket("ws://localhost:3000");
+const socket = new WebSocket("ws://localhost:4000");
 socket.onopen = () => {
   console.log("Connected to WebSocket from front end");
 };
