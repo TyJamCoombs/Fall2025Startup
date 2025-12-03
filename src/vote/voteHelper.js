@@ -4,6 +4,28 @@ const input = document.getElementById("entryInput");
 const button = document.getElementById("submitBtn");
 const leaderboardList = document.getElementById("leaderboard");
 
+const socket = new WebSocket("ws://localhost:3000");
+socket.onopen=()=>{
+  console.log("Connected to WebSocket from front end");
+};
+
+socket.onmessage=(event)=>{
+  try{
+    const data = JSON.parse(event.data);
+    if(Array.isArray(data.leaderboard)){
+      leaderboardList = data.leaderboard;
+      renderLeaderboard();
+    }
+    else if(data.entry){
+      leaderboard.push(data.entry);
+      renderLeaderboard();
+    }
+  }
+  catch(err){
+      console.log("Bad Message:",event.data);
+  }
+};
+
 function renderLeaderboard() {
   leaderboardList.innerHTML = "";
   leaderboard.forEach((entry, index) => {
@@ -16,8 +38,7 @@ function renderLeaderboard() {
 button.addEventListener("click", () => {
   const value = input.value.trim();
   if (value) {
-    leaderboard.push(value);
-    renderLeaderboard();
+    socket.send(JSON.stringify({entry:value}));
     input.value = "";
   }
 });
